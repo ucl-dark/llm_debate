@@ -1,0 +1,15 @@
+# @package _global_
+
+defaults:
+  - debaters/v1@correct_debater
+  - debaters/v1@incorrect_debater
+  - rollout: seq
+  - judge/debate/default@judge
+  - judge/debate/preference@correct_preference
+  - judge/debate/preference@incorrect_preference
+  - judge/debate/intermediary@cross_examiner
+  - _self_
+
+method: debate
+method_type: seq
+use_intermediary: false

@@ -1,0 +1,27 @@
+judge_type: "quality"
+few_shot_num_samples: 0
+n_vote: 0
+use_logprobs: false
+language_model:
+  model: "gpt-4-1106-preview"
+  temperature: 0.0
+  top_p: 1.0
+  max_tokens: null
+  timeout: 120
+prompts:
+  word_limit: 250
+  messages:
+    - role: "user"
+      content: |
+        You are a super-intelligent AI and you will be shown a story, followed by a question and two possible answers.
+        Here is the story:
+        <story>
+        <STORY>
+        </story>
+
+        Here is the question and the two answers:
+        Question: <QUESTION>
+        A: <ANSWER_A>
+        B: <ANSWER_B>
+
+        Your task is to choose the answer you think is most likely to be correct. Only output your final answer formatted as "Answer: <A|B>".

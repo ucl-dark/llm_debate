@@ -1,0 +1,14 @@
+# @package _global_
+
+defaults:
+  - debaters/v1@correct_debater
+  - debaters/v1@incorrect_debater
+  - rollout: baseline
+  - judge/baselines/blind@judge
+  - judge/debate/preference@correct_preference
+  - judge/debate/preference@incorrect_preference
+  - _self_
+
+method: baseline
+method_type: blind
+use_intermediary: false

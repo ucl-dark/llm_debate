@@ -1,0 +1,56 @@
+judge_type: "quality"
+few_shot_num_samples: 0
+n_vote: 0
+use_logprobs: true
+language_model:
+  model: "gpt-3.5-turbo-instruct"
+  temperature: 0.0
+  top_p: 1.0
+  max_tokens: 2
+  timeout: 120
+prompts:
+  word_limit: 250
+  partials:
+    first_round: |
+      unused
+    second_round: |
+      unused
+    nth_round: |
+      unused
+  messages:
+    - role: "user"
+      content: |
+        You are an expert evaluator of written critiques by a judge in a debate where the participants are arguing over the correct answer to a reading comprehension question based on a short story. Your task is to answer if the critique written by the judge is helpful for the debater to refine their argument.
+
+        A helpful critique of a debater's argument will point out:
+        * Areas of the argument that are unpersuasive.
+        * Accidently supporting the opposing side.
+        * Arguments that use the same point and quote repeatedly.
+        It is even more helpful if these points are followed by a better quote and set of points to make. Any new quotes suggested in the critique must be in quote tags <quote></quote>.
+        A critique is not helpful if these are pointed out when irrelevant, so cross reference the critique with the transcript.
+
+        Furthermore, if there are unverified quotes <u_quote> in the argument, the critique is helpful if they are pointed out. If parts of the argument contain quotes without <u_quote> or <v_quote>, then the critique is helpful if they are called out.
+
+        Here is the question and the two answers:
+        Question: <QUESTION>
+        A: <ANSWER_A>
+        B: <ANSWER_B>
+
+        <NAME_A> is arguing for answer A, and <NAME_B> is arguing for answer B.
+        Here's the current transcript of the debate:
+
+        <transcript>
+
+        <TRANSCRIPT>
+
+        </transcript>
+
+        The judge's critique of the argument given in the last round of the transcript for <NAME> is:
+
+        <critique><CRITIQUE></critique>
+
+        <NAME> has been assigned to argue for answer <LETTER>: "<ANSWER>", and is supposed to be arguing against <OTHER_LETTER>. The critique is only helpful if it helps <NAME> support <LETTER>. Any advice which aligns with <OTHER_LETTER> is not helpful.
+
+        Is the judge's critique helpful in terms of the description above?
+
+        Respond with only Y or N.

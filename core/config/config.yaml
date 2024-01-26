@@ -1,0 +1,72 @@
+hydra:
+  run:
+    dir: ${exp_dir}/logs/${now:%Y-%m-%d}/${now:%H-%M-%S}
+  sweep:
+    dir: ${exp_dir}/multirun/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    subdir: ${hydra.job.num}
+  job_logging:
+    root:
+      level: INFO
+
+defaults:
+  - _self_
+
+logging: INFO
+print_prompt_and_response: false
+
+# Common Params
+exp_dir: ???
+method: ??? # debate, consultancy
+method_type: ??? # sim, seq | correct, incorrect
+use_intermediary: ???
+
+# Load
+seed: 0
+split:
+  - train
+  - dev
+max_tokens_story: null
+limit: null
+sources:
+  - Gutenberg
+difficulty: 1
+ignore_nyu: false
+minimize_story_duplication: true
+max_answerability: 1.0
+min_untimed_accuracy: 1.0
+max_speed_accuracy: 0.5
+min_context_required: 1.5
+skip_conflicting_labels: true
+max_num_from_same_story: 1
+human_experiments: null
+
+# Debater
+correct_debater:
+incorrect_debater:
+judge:
+concession_judge:
+cross_examiner:
+correct_preference:
+incorrect_preference:
+correct_critic:
+incorrect_critic:
+correct_critique_pm:
+incorrect_critique_pm:
+rollout:
+
+# Judge
+judge_name: "gpt-4"
+judge_type: "judge"
+round_limit: null
+
+# Scoring
+dataset: "quality"
+n_votes: 1
+results_file_name: "results.csv"
+
+# API
+organization: DEFAULT_ORG
+anthropic_tag: ANTHROPIC_API_KEY
+openai_tag: API_KEY
+anthropic_num_threads: 80
+openai_fraction_rate_limit: 0.9

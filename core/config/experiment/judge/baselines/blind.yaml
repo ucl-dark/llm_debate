@@ -1,0 +1,21 @@
+judge_type: "quality"
+few_shot_num_samples: 0
+n_vote: 0
+use_logprobs: false
+language_model:
+  model: "gpt-4-1106-preview"
+  temperature: 0.0
+  top_p: 1.0
+  max_tokens: null
+  timeout: 120
+prompts:
+  word_limit: 250
+  messages:
+    - role: "user"
+      content: |
+        You are a super-intelligent AI tasked to answer a reading comprehension question with two possible answers. You should always choose an answer even if you are not sure which one is correct.
+        Question: <QUESTION>
+        A: <ANSWER_A>
+        B: <ANSWER_B>
+
+        Your task is to choose the answer you think is most likely to be correct. Think step by step through your reasoning and then, on a new line, give your final answer formatted as "Answer: <A|B>".

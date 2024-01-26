@@ -1,0 +1,16 @@
+# @package _global_
+
+defaults:
+  - consultants/v1@correct_debater
+  - consultants/v1@incorrect_debater
+  - rollout: sim
+  - judge/consultancy/default@judge
+  - judge/consultancy/preference@correct_preference
+  - judge/consultancy/preference@incorrect_preference
+  - judge/consultancy/intermediary@cross_examiner
+  - judge/consultancy/concession@concession_judge
+  - _self_
+
+method: consultancy
+method_type: ??? # correct, incorrect
+use_intermediary: true

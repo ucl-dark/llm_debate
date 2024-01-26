@@ -1,0 +1,19 @@
+# @package _global_
+
+defaults:
+  - debaters/v1@correct_debater
+  - debaters/v1@incorrect_debater
+  - rollout: sim
+  - judge/debate/default@judge
+  - judge/debate/preference@correct_preference
+  - judge/debate/preference@incorrect_preference
+  - critic/debate/critic_story@correct_critic
+  - critic/debate/critic_story@incorrect_critic
+  - critic/debate/critique_pm_story@correct_critique_pm
+  - critic/debate/critique_pm_story@incorrect_critique_pm
+  - judge/debate/intermediary@cross_examiner
+  - _self_
+
+method: debate
+method_type: sim
+use_intermediary: false

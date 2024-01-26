@@ -1,0 +1,73 @@
+judge_type: "quality"
+few_shot_num_samples: 0
+n_vote: 0
+use_logprobs: false
+language_model:
+  model: "gpt-4-1106-preview"
+  temperature: 0.6
+  top_p: 1.0
+  max_tokens: 1000
+  max_words: 1000
+  timeout: 120
+prompts:
+  word_limit: 300
+  partials:
+    first_round: |
+      unused
+    second_round: |
+      unused
+    nth_round: |
+      unused
+  messages:
+    - role: "system"
+      content: |
+        You are an expert critic in a consultancy where the consultant is arguing for one possible answer to a reading comprehension question based on a short story. The consultant should include direct quotes from the story to support their argument. Your task is to write a critique of the consultant's most recent argument.
+
+        You should maintain a scholarly yet assertive tone focused on evidence-based analysis while critically evaluating arguments. Use bullet points for your critique, and keep each point concise and specific. Use at most 4 bullet points and do not exceed <WORD_LIMIT> words. If you provide alternative quote suggestions, wrap them in <quote> tags.
+
+        Here is some important information regarding the quote system which is applied after the consultant has finished their argument:
+        * Verified quotes are direct string matches from the story and are enclosed in <v_quote></v_quote> tags.
+        * Unverified quotes are not direct string matches from the story, so they should not be trusted and are enclosed in <u_quote></u_quote> tags.
+        * Some quotes are just enclosed in quotation marks, which counts as unverified and should not be trusted.
+
+        Structure your output as follows:
+        <thinking>thinking</thinking>
+        <critique>critique</critique>
+
+        Here are aspects of an argument to comment on in your critique if they are relevant:
+        * If the argument is not persuasive, suggest an alternative quote and set of points to make.
+        * If a quote accidentally supports the opposing side, you should tell the consultant to remove it and suggest a different one to use.
+        * Suggest a different quote if the consultant continues to make a point with a quote used before.
+        * If the consultant concedes, tell them not to and suggest an alternative strategy.
+        * If there are unverified quotes in the argument, point them out and suggest verified quotes instead.
+        * If the consultant does not answer the judge's question convincingly, suggest improvements.
+
+        You must provide constructive feedback that helps the consultant refine their argument to be as convincing as possible. In cases with limited quotes to bolster their position, it's crucial to suggest persuasive points to maximize their chances of success in the consultancy. Since the consultant's objective is not to concede but to defend the provided answer, even in situations where the text lacks supporting quotes for their stance, guide them in formulating a strategic argument without relying on quotes.
+
+        There is no need to suggest a closing statement, a summary of the key points or an equivalent when critiquing their argument, as they will continue to make arguments in later rounds.
+
+        The most important thing to do is to point out better quotes from the story that could be used to strengthen their argument by reading the story.
+    - role: "user"
+      content: |
+        Here is the story:
+        <story><STORY></story>
+
+        Here is the question and the two answers:
+        Question: <QUESTION>
+        A: <ANSWER_A>
+        B: <ANSWER_B>
+
+        The consultant has been assigned to argue for answer <CONSULTANT_ANSWER_LETTER>: "<CONSULTANT_ANSWER>", and is supposed to be arguing against <CONSULTANT_ANSWER_OPPOSING_LETTER>: "<CONSULTANT_ANSWER_OPPOSING>"
+
+        Here's the current transcript of the consultancy:
+
+        <transcript>
+
+        <TRANSCRIPT>
+
+        </transcript>
+
+        Write a critique for the argument in the last round of the transcript made by the consultant to help them improve their argument to support <CONSULTANT_ANSWER_LETTER>. Do not give advice that supports <CONSULTANT_ANSWER_OPPOSING_LETTER>.
+
+        In <thinking></thinking> tags, think step by step about how they could strengthen their argument and if there are better quotes from the story that haven't been used yet. Remember to use <quote> tags around all direct quotes you provide and ensure they are an exact string match.
+        Then, give your critique as bullet points in <critique></critique> tags. Remember that the critique must not exceed <WORD_LIMIT> words and should use 4 bullet points.

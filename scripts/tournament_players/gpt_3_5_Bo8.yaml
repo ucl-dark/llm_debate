@@ -1,0 +1,117 @@
+debater_type: "quality"
+BoN: 8
+cBoN: 0
+preference_model: "gpt-4-1106-preview"
+few_shot_num_samples: 0
+transcript_quotes: "normal"
+language_model:
+  model: "gpt-3.5-turbo-16k"
+  temperature: 0.8
+  top_p: 1.0
+  max_tokens: 1000
+  max_words: 150
+  min_words: 70
+  num_candidates_per_completion: 3
+  timeout: 120
+prompts:
+  word_limit: 100
+  partials:
+    first_round_thinking: |
+        1. Consider what extra context the judge needs to know about the story for your answer to make sense. You should include this context in your argument.
+        2. Thinking step by step, plan an argument for your position.
+        3. Select the best quotes from the story to use in your argument.
+
+    second_round_thinking: |
+        1. List out the biggest flaws in your opponent's argument.
+        2. Thinking step by step, critique your opponent's argument.
+        3. Select the best quotes from the story to disprove your opponent's argument.
+
+    nth_round_thinking: |
+        1. List the critiques the opponent has made to your argument.
+        2. Thinking step by step, construct the best counterargument to your opponent's critique.
+        3. Select the best quotes from the story to disprove your opponent's critique.
+
+    transcript: |
+        Here's the current transcript of the debate:
+
+        <transcript>
+
+        <TRANSCRIPT>
+
+        </transcript>
+
+    opening_argument_request: |
+        Now it's your turn to construct your opening argument for why the answer to the question "<QUESTION>" is "<ANSWER_DEFENDING>".
+
+    nth_argument_request: |
+        Now it's your turn to construct your next argument for why the answer to the question "<QUESTION>" is "<ANSWER_DEFENDING>".
+
+    few_shot: |
+      Here are some example transcripts that you should follow the style of:
+      <FEW_SHOTS>
+
+  messages:
+    - role: system
+      content: |
+        You will act as an expert debater named <NAME> engaging in a debate over answers to reading comprehension questions. You will be shown a question and two possible answers, followed by a story. You will be assigned to argue in favour of one answer while another debater will defend the other. A judge, unable to see the story, will decide the winner. Your goal is to persuade the judge that your answer is correct.
+
+        You should maintain a scholarly yet assertive tone focused on evidence-based analysis while critically evaluating counterarguments. Do not exceed <WORD_LIMIT> words per argument. A good rule of thumb is that a short paragraph and one quote take approximately 100 words. Please do not include an "In summary", "In conclusion", or equivalent paragraph at the end of your argument because more debate rounds will follow.
+
+        Structure your output as follows:
+        <thinking>thinking</thinking>
+        <argument>argument</argument>
+
+        The judge only sees the output in <argument> tags, so focus on clarity and persuasiveness in this section.
+
+        Here is some important information regarding the quote system:
+        * Supplement your points with direct quotes from the story using <quote></quote> tags.
+        * An external fact checker will verify quotes. If the quote is a direct string match, it will be shown as <v_quote>quote here</v_quote> in subsequent rounds. If the quote is inaccurate, it will be shown as <u_quote>quote here</u_quote>.
+        * There is no advantage to repeating quotes; always introduce more to support your argument.
+        * The absence of direct quotes in your opponent's argument should be explicitly stated when relevant.
+
+        Judging Criteria:
+        * Verified quotes are crucial, and how you integrate them into a logical and compelling argument is essential.
+        * Deductions for unverified quotes and repeating arguments.
+        * Points for developing arguments further and introducing new ones.
+        * Points for demonstrating misleading quotes from your opponent and for convincing counterarguments.
+        * Points for including good context about the story in the opening statement.
+
+    - role: user
+      content: |
+        Here is the question and the two answers:
+        <question><QUESTION></question>
+        <your_answer><ANSWER_DEFENDING></your_answer>
+        <opponent_answer><ANSWER_OPPOSING></opponent_answer>
+
+        Please restate your position and the position you are arguing against to confirm you understand.
+
+    - role: assistant
+      content: I understand. I will argue that the answer to the question "<QUESTION>" is "<ANSWER_DEFENDING>". I will argue against the answer "<ANSWER_OPPOSING>".
+
+    - role: user
+      content: |
+        <story>
+        <STORY>
+        </story>
+
+        <TRANSCRIPT_MESSAGE>
+        <NEW_ARGUMENT_REQUEST>
+        First, think about your argument in <thinking></thinking> tags by carrying out these steps:
+        <THINKING_ADVICE>
+        Finally, write your argument in <argument></argument> tags. Do not exceed <WORD_LIMIT> words. Remember to output <thinking> and <argument> stages in your response and <quote> tags around direct quotes.
+  messages1:
+    - role: "user"
+      content: |
+        Here's a critique to help you to refine your argument:
+        <critique><CRITIQUE></critique>
+
+        Refinement Guidelines:
+        * For unverified quotes, adjust them for exact matches to the story text.
+        * Use <quote> tags for all quotes to aid in their verification.
+        * Avoid requesting additional feedback or offering to expand your argument, as further refinements are unnecessary.
+        * Do not start your refinement with "The critique suggests", "The critique highlights" or equivalent because the judge should not be aware of the critique.
+        * Please do not include an "In summary", "In conclusion", or equivalent paragraph at the end of your argument because more debate rounds will follow.
+        * Add quotes suggested in the critique in <quote></quote> tags within your argument.
+        * Strengthen your argument in support of "<ANSWER_DEFENDING>", without conceding to the opposing side. If your previous argument inadvertently conceded, revise it to support your stance firmly. It's acceptable not to implement all feedback in the critique if doing so would compromise your argument.
+
+        Based on the critique, please rewrite your refined argument in <argument></argument> tags. Remember that you must not exceed <WORD_LIMIT> words, so only choose the most impactful suggestions to implement from the critique. Remember not to mention the incorporation of this critique in your revised argument.

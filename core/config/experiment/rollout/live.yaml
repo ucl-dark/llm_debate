@@ -1,0 +1,7 @@
+rollout_type: "quality_live"
+num_steps: 3
+name1: "Debater A"
+name2: "Debater B"
+consultant_name: "Consultant"
+cross_examiner_name: "Judge"
+judge_name: "Judge"

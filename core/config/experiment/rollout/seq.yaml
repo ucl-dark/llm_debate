@@ -1,0 +1,6 @@
+rollout_type: "quality_seq"
+num_steps: 3
+name1: "Debater A"
+name2: "Debater B"
+cross_examiner_name: "Judge"
+judge_name: "Judge"

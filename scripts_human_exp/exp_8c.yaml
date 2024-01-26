@@ -1,0 +1,61 @@
+experiment_config:
+  name: "Experiment 8c"
+  public_name: "Experiment 8c"
+  give_judge_feedback: false
+  starts_at:  2023-12-30
+
+question_config:
+  split:
+    - train
+    - dev
+  limit: 16
+  sources:
+    - Gutenberg
+  difficulty: 1
+  max_answerability: 1.0
+  min_untimed_accuracy: 1.0
+  max_speed_accuracy: 0.5
+  min_context_required: 1.5
+  skip_conflicting_labels: true
+
+variants:
+  - portion: "1/4"
+    name: "interactive_debate"
+    method: "debate"
+    debate_type: "sim"
+    rollout_config: "./experiments/human_judge/agent_configs/exp8/rollout.yaml"
+    debater_config: "./experiments/human_judge/agent_configs/exp8/debater_v7_interactive.yaml"
+    rollout_steps: 1
+    max_steps: 3
+    min_steps: 3
+    allow_judge_interaction: true
+
+  - portion: "1/4"
+    name: "interactive_consultancy"
+    method: "consultancy"
+    rollout_config: "./experiments/human_judge/agent_configs/exp8/rollout.yaml"
+    debater_config: "./experiments/human_judge/agent_configs/exp8/consultant_v10a.yaml"
+    rollout_steps: 1
+    max_steps: 3
+    min_steps: 3
+    allow_judge_interaction: true
+
+  - portion: "1/4"
+    name: "static_debate"
+    method: "debate"
+    debate_type: "sim"
+    rollout_config: "./experiments/human_judge/agent_configs/exp8/rollout.yaml"
+    debater_config: "./experiments/human_judge/agent_configs/exp8/debater_v7.yaml"
+    rollout_steps: 3
+    max_steps: 3
+    allow_judge_interaction: false
+
+  - portion: "1/4"
+    name: "static_consultancy"
+    method: "consultancy"
+    rollout_config: "./experiments/human_judge/agent_configs/exp8/rollout.yaml"
+    debater_config: "./experiments/human_judge/agent_configs/exp8/consultant_v10a.yaml"
+    cross_examiner_config: "./experiments/human_judge/agent_configs/exp8/consultant_intermediary.yaml"
+    rollout_steps: 3
+    max_steps: 3
+    allow_judge_interaction: false
