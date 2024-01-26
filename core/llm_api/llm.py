@@ -25,15 +25,14 @@ LOGGER = logging.getLogger(__name__)
 
 @attrs.define()
 class ModelAPI:
-    anthropic_num_threads: int = 5  # current redwood limit is 5
+    anthropic_num_threads: int = 5
     openai_fraction_rate_limit: float = attrs.field(
         default=0.99, validator=attrs.validators.lt(1)
     )
-    organization: str = "NYU_ORG"
+    organization: str = "DEFAULT_ORG"
     print_prompt_and_response: bool = False
 
     _openai_base: OpenAIBaseModel = attrs.field(init=False)
-    _openai_base_arg: OpenAIBaseModel = attrs.field(init=False)
     _openai_chat: OpenAIChatModel = attrs.field(init=False)
     _anthropic_chat: AnthropicChatModel = attrs.field(init=False)
 
@@ -44,15 +43,10 @@ class ModelAPI:
     def __attrs_post_init__(self):
         secrets = load_secrets("SECRETS")
         if self.organization is None:
-            self.organization = "NYU_ORG"
+            self.organization = "DEFAULT_ORG"
         self._openai_base = OpenAIBaseModel(
             frac_rate_limit=self.openai_fraction_rate_limit,
             organization=secrets[self.organization],
-            print_prompt_and_response=self.print_prompt_and_response,
-        )
-        self._openai_base_arg = OpenAIBaseModel(
-            frac_rate_limit=self.openai_fraction_rate_limit,
-            organization=secrets["ARG_ORG"],
             print_prompt_and_response=self.print_prompt_and_response,
         )
         self._openai_chat = OpenAIChatModel(
@@ -151,11 +145,7 @@ class ModelAPI:
             #     model_ids = [model_ids]
 
         def model_id_to_class(model_id: str) -> ModelAPIProtocol:
-            if model_id in ["gpt-4-base", "gpt-3.5-turbo-instruct"]:
-                return (
-                    self._openai_base_arg
-                )  # NYU ARG is only org with access to this model
-            elif model_id in BASE_MODELS:
+            if model_id in BASE_MODELS:
                 return self._openai_base
             elif model_id in GPT_CHAT_MODELS or "ft:gpt-3.5-turbo" in model_id:
                 return self._openai_chat
