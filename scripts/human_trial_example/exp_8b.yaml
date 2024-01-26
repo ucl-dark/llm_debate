@@ -1,8 +1,8 @@
 experiment_config:
-  name: "Experiment 8c"
-  public_name: "Experiment 8c"
+  name: "Experiment 8b"
+  public_name: "Experiment 8b"
   give_judge_feedback: false
-  starts_at:  2023-12-30
+  starts_at:  2023-12-25
 
 question_config:
   split:
@@ -23,8 +23,8 @@ variants:
     name: "interactive_debate"
     method: "debate"
     debate_type: "sim"
-    rollout_config: "./experiments/human_judge/agent_configs/exp8/rollout.yaml"
-    debater_config: "./experiments/human_judge/agent_configs/exp8/debater_v7_interactive.yaml"
+    rollout_config: "./scripts/human_trial_example/exp8/rollout.yaml"
+    debater_config: "./scripts/human_trial_example/exp8/debater_v7_interactive.yaml"
     rollout_steps: 1
     max_steps: 3
     min_steps: 3
@@ -33,8 +33,8 @@ variants:
   - portion: "1/4"
     name: "interactive_consultancy"
     method: "consultancy"
-    rollout_config: "./experiments/human_judge/agent_configs/exp8/rollout.yaml"
-    debater_config: "./experiments/human_judge/agent_configs/exp8/consultant_v10a.yaml"
+    rollout_config: "./scripts/human_trial_example/exp8/rollout.yaml"
+    debater_config: "./scripts/human_trial_example/exp8/consultant_v10a.yaml"
     rollout_steps: 1
     max_steps: 3
     min_steps: 3
@@ -44,8 +44,8 @@ variants:
     name: "static_debate"
     method: "debate"
     debate_type: "sim"
-    rollout_config: "./experiments/human_judge/agent_configs/exp8/rollout.yaml"
-    debater_config: "./experiments/human_judge/agent_configs/exp8/debater_v7.yaml"
+    rollout_config: "./scripts/human_trial_example/exp8/rollout.yaml"
+    debater_config: "./scripts/human_trial_example/exp8/debater_v7.yaml"
     rollout_steps: 3
     max_steps: 3
     allow_judge_interaction: false
@@ -53,9 +53,9 @@ variants:
   - portion: "1/4"
     name: "static_consultancy"
     method: "consultancy"
-    rollout_config: "./experiments/human_judge/agent_configs/exp8/rollout.yaml"
-    debater_config: "./experiments/human_judge/agent_configs/exp8/consultant_v10a.yaml"
-    cross_examiner_config: "./experiments/human_judge/agent_configs/exp8/consultant_intermediary.yaml"
+    rollout_config: "./scripts/human_trial_example/exp8/rollout.yaml"
+    debater_config: "./scripts/human_trial_example/exp8/consultant_v10a.yaml"
+    cross_examiner_config: "./scripts/human_trial_example/exp8/consultant_intermediary.yaml"
     rollout_steps: 3
     max_steps: 3
     allow_judge_interaction: false
