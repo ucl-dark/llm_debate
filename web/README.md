@@ -30,7 +30,7 @@ brew services start postgresql
 createuser -P psqluser
 createdb -O psqluser debate
 psql -U psqluser -d debate
-INSERT INTO users (user_name, full_name, admin) VALUES ('john.h', 'John Hughes', TRUE);
+INSERT INTO users (user_name, full_name, admin) VALUES ('user', 'User Name', TRUE);
 ```
 
 To create the database schema, run `python -m web.backend.scripts.reset_database` from the project root (uncomment the raise errorif you are local otherwise don't run this).

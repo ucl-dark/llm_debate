@@ -56,8 +56,6 @@ class TranscriptParser:
         swap = transcript["swap"]
         rounds = []
 
-        # if file.path == './data/gcp/0814/data/dan_exp/quality/230905/gpt-4 (2 turn)/swap_conversational_debate0_dishonest_judgement.csv':
-        #     breakpoint()
         for old_round in transcript["rounds"]:
             if is_consultancy:
                 new_round = Round(

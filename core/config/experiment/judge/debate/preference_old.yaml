@@ -2,7 +2,7 @@ judge_type: "quality"
 use_logprobs: true
 few_shot_num_samples: 0
 n_vote: 0
-few_shot_base: "/home/johnh/results/nyu_humans/few_shot_paper/gold_label_preference_old"
+few_shot_base: null
 language_model:
   model: "gpt-4-base"
   temperature: 0.0

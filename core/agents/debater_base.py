@@ -32,9 +32,7 @@ class DebaterConfig(BaseModel):
     few_shot_num_samples: Optional[int] = 0
     transcript_quotes: Optional[str] = None
     permissions: Optional[dict] = None
-    few_shot_base: Optional[
-        str
-    ] = "/home/johnh/results/nyu_humans/few_shot/debaters_with_win"
+    few_shot_base: Optional[str] = None
 
 
 class DebaterBase:

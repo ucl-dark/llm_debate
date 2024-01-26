@@ -2,7 +2,7 @@ judge_type: "quality"
 use_logprobs: true
 few_shot_num_samples: 0
 n_vote: 0
-few_shot_base: "/home/johnh/results/nyu_humans/few_shot_strict_quotes/judge_finetuning_remove_final/gold_label"
+few_shot_base: null
 language_model:
   model: "gpt-4-1106-preview"
   temperature: 0.0
