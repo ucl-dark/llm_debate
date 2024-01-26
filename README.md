@@ -42,7 +42,11 @@ Code release for "More Persuasive LLMs Lead to Improved Truthfulness in Debate"
     ```
 
 ## Usage
-### Running Debate
+### Minimal Script
+We recommend our minimal script to run everything end-to-end: `./scripts/reproduce_minimal.sh`. This will run all protocols (blind, consultancy, debate, interactive debate, expert judge) with GPT-4-Turbo expert and non-experts on 10 questions from QuALITY. Then run notebook `scripts/plot_minimal.ipynb` to generate a minimal plot similar to Figure 1 in the paper.
+Running `./scripts/run_figure1.sh` will reproduce the LLM results in Figure 1 but uses best-of-16 so watch your OpenAI usage limit.
+
+### Running Custom Experiments
 
 ```bash
 # Run a debate and judgement on one question from the train-set of QuALITY

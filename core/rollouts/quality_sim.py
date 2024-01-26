@@ -164,9 +164,9 @@ class QualitySimRollout(RolloutBase):
                     else self.incorrect_debater
                 )
                 LOGGER.info(f"Total cost: {debater.api_handler.running_cost:.3f}")
-                log_model_timings(
-                    debater.api_handler, save_location="./data/model_timings.png"
-                )
+                # log_model_timings(
+                #     debater.api_handler, save_location="./exp/model_timings.png"
+                # )
             LOGGER.info(f"Completed: {transcript.index}")
 
         return {

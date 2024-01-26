@@ -12,7 +12,7 @@ model_judge=gpt-4-1106-preview
 # if you want to run the full experiment, use BoN=16, temperature=0.8 and limit=47 (see run_figure1.sh)
 BoN=1
 temperature=0.4
-limit=10
+limit=20
 dataset_args="++max_num_from_same_story=5 ++split=both ++human_experiments=8 ++limit=$limit" # T_h dataset (47 questions)
 
 # Run all experiments

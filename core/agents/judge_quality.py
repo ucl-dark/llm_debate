@@ -216,9 +216,9 @@ class JudgeQuality(JudgeBase):
         if complete:
             LOGGER.info(f"Completed {index}")
             LOGGER.info(f"Total cost: {self.api_handler.running_cost:.3f}")
-            log_model_timings(
-                self.api_handler, save_location="./data/judge_timings.png"
-            )
+            # log_model_timings(
+            #     self.api_handler, save_location="./exp/judge_timings.png"
+            # )
         return {
             "judgement": response,
             "complete": complete,
