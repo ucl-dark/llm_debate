@@ -111,7 +111,7 @@ def create_rollout_config():
 
 
 def create_rollout(debate: models.Debate):
-    api_handler = ModelAPI(organization="FARAI_ORG")
+    api_handler = ModelAPI(organization="DEFAULT_ORG")
     transcript = TranscriptConfig(**debate.transcript)
     rollout_config = create_rollout_config()
     correct_debater, incorrect_debater, cross_examiner = [None, None, None]

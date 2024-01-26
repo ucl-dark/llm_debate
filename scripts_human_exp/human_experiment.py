@@ -301,7 +301,7 @@ async def debate(
     api_handler = ModelAPI(
         anthropic_num_threads=threads,
         openai_fraction_rate_limit=0.9,
-        organization="FARAI_ORG",
+        organization="DEFAULT_ORG",
     )
 
     debate_files = glob.glob(f"{exp_dir}/assignments/*.csv")
