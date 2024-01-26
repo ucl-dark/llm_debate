@@ -150,7 +150,7 @@ uvicorn web.backend.main:app --reload
 - `core/scoring/rating.py`: Script for computing aggregate Elo rating debaters.
 - `core/llm_api`: Directory containing modules for async LLM inference
 - `scripts`: Contains the scripts to reproduce the main figures in the paper and otehr minimal examples.
-- `scripts_human_exp`: Contains the script and config to reproduce a human experiment.
+- `scripts/human_trial_example`: Contains the script and config to reproduce a human experiment.
 - `web`: Contains the code for the web frontend and backend to host a human trial or view debate transcripts.
 
 
