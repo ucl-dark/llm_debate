@@ -2,7 +2,7 @@
 
 ## Overview
 
-Code release for "More Persuasive LLMs Lead to Improved Truthfulness in Debate"
+Code release for "Debating with More Persuasive LLMs Leads to More Truthful Answers"
 
 ## Setup
 
