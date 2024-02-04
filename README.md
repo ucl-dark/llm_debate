@@ -155,6 +155,7 @@ uvicorn web.backend.main:app --reload
 - `core/llm_api`: Directory containing modules for async LLM inference
 - `scripts`: Contains the scripts to reproduce the main figures in the paper and otehr minimal examples.
 - `scripts/human_trial_example`: Contains the script and config to reproduce a human experiment.
+- `data`: zip files containing LLM debates from the human trial
 - `web`: Contains the code for the web frontend and backend to host a human trial or view debate transcripts.
 
 

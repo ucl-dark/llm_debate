@@ -134,13 +134,7 @@ dmypy.json
 .pyre/
 SECRETS
 PROD_SECRETS
-data/
-data_clean/
-data_old/
 .DS_Store
-data_new/
-new_data/
-data2/
 exp/
 pyrightconfig.json
 *.db
