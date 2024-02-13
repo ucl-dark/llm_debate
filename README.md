@@ -2,7 +2,7 @@
 
 ## Overview
 
-Code release for "Debating with More Persuasive LLMs Leads to More Truthful Answers"
+Code release for our paper [Debating with More Persuasive LLMs Leads to More Truthful Answers](https://arxiv.org/abs/2402.06782)
 
 ## Setup
 
@@ -164,3 +164,17 @@ uvicorn web.backend.main:app --reload
 Contributions to this repository are welcome. Please follow the standard procedures for submitting issues and pull requests.
 
 ---
+
+## Citation
+
+If you would like to cite our work or data, you may use this citation:
+```
+@misc{khan2024debating,
+      title={Debating with More Persuasive LLMs Leads to More Truthful Answers}, 
+      author={Akbir Khan and John Hughes and Dan Valentine and Laura Ruis and Kshitij Sachan and Ansh Radhakrishnan and Edward Grefenstette and Samuel R. Bowman and Tim Rocktäschel and Ethan Perez},
+      year={2024},
+      eprint={2402.06782},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI}
+}
+```
