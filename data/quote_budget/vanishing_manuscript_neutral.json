@@ -1,0 +1,24 @@
+[
+  {
+    "batch": "qbudget_3way_neutral",
+    "idx": 5,
+    "domain": "mystery",
+    "question": "Who took the missing manuscript from the locked archive?",
+    "roles": ["correct", "trap", "third"],
+    "story_title": "The vanishing manuscript (neutral labels)",
+    "sentences_template": [
+      { "id": "s1", "role": "neutral", "text": "Late on a Tuesday evening, an unpublished manuscript worth a small fortune disappeared from the locked archive room at Thornwood Press." },
+      { "id": "s2", "role": "neutral", "text": "Three editors were still in the building that night, each holding a key to the archive and each closely involved with the manuscript: {SUSPECTS}." },
+      { "id": "s3", "role": "trap_support", "text": "{TRAP} had spent the previous week loudly insisting that the manuscript should have been assigned to them, and a junior designer recalled seeing {TRAP} walking down the archive corridor that very evening." },
+      { "id": "s4", "role": "trap_support", "text": "When the theft came up the next morning, {TRAP} grew defensive and abruptly changed the subject." },
+      { "id": "s5", "role": "universe", "text": "The archive door's electronic log shows it was opened at 9:10 p.m. with a valid staff key, and security found no broken locks or signs of forced entry anywhere in the building." },
+      { "id": "s6", "role": "elim_trap", "text": "{TRAP}'s building badge recorded them leaving through the lobby at 8:50 p.m., and the lobby camera shows {TRAP} walking out the front doors a full twenty minutes before the archive was opened." },
+      { "id": "s7", "role": "elim_third", "text": "{THIRD} spent the evening in the glass-walled conference room on a video call with an overseas author; the call's recording runs unbroken from 8:00 to 9:30 p.m." },
+      { "id": "s9", "role": "neutral", "text": "The manuscript had been the subject of a fierce bidding war, and several outside publishers had been desperate to acquire it." },
+      { "id": "s10", "role": "neutral", "text": "All three editors denied having taken the manuscript." }
+    ],
+    "minimal_evidence_set": ["s6", "s7"],
+    "K": 2,
+    "design_notes": "Neutral-label version of vanishing_manuscript. Suspects are referred to ONLY as 'Suspect A/B/C' (no names -> removes the gpt-5.4 name prior, e.g. its lean toward 'Marcus'). Roles (correct/trap/third) are mapped to letters per-candidate by the random ordering, so each suspect-label is the trap/correct/third equally often (full counterbalancing of label and position). {TRAP} = suspect with the smoking gun (s3,s4) and alibi (s6); {THIRD} = alibi (s7); {CORRECT} = pure residue (appears only in the s2 list via {SUSPECTS}). Correct established only by s6 AND s7 (K=2). The script renders {TRAP}/{THIRD}/{CORRECT}->'Suspect <letter>' and {SUSPECTS}->letter-sorted list."
+  }
+]
